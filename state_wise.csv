@@ -1,4 +1,4 @@
-State,Lat,Long,Confirmed,Recovered,Deaths,Active,Last_Updated_Time,Migrated_Other,State_code,Delta_Confirmed,Delta_Recovered,Delta_Deaths,State_Notes
+State,lat,lon,Confirmed,Recovered,Deaths,Active,Last_Updated_Time,Migrated_Other,State_code,Delta_Confirmed,Delta_Recovered,Delta_Deaths,State_Notes
 Total,,,31525149,30691796,422671,398207,28-07-2021 21:44,12475,TT,41686,36199,616,
 Andaman and Nicobar Islands,11.66702557,92.73598262,7531,7395,129,7,28-07-2021 19:50,0,AN,1,6,0,
 Andhra Pradesh,14.7504291,78.57002559,1959942,1925631,13312,20999,27-07-2021 17:32,0,AP,2010,1956,20,
