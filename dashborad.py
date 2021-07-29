@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 
 df = pd.read_csv("state_wise.csv")
 df['Date'] = df['Last_Updated_Time'].astype('datetime64[ns]')
@@ -12,7 +13,9 @@ st.set_page_config(page_title='Streamlit Dashboard',
 st.markdown("<h1 style='text-align: center; color: red;'>COVID19 DASHBOARD - INDIA</h1>",
             unsafe_allow_html=True)
 
-st.markdown('This dashboard visualizes the current Covid-19 Situation in India')
+st.markdown("<p style='text-align: justify;'>As we all know our country is still facing SARS-CoV-2 (n-coronavirus),the scenes of suffering in our country are hard to comprehend. A second wave beginning in March 2021 was much larger than the first, with shortages of vaccines, hospital beds, oxygen cylinders and other medicines in parts of the country. By late April, India led the world in new and active cases. On 30 April 2021, it became the first country to report over 400,000 new cases in a 24-hour period.Health experts believe that India's figures have been underreported due to several factors.</p>", unsafe_allow_html=True)
+
+st.markdown("<h4 style='text-align: justify; color: blue;'>This dashboard is an effort to analyze the cumulative data of confirmed, deaths, recovered and active cases over time.</h4>", unsafe_allow_html=True)
 
 
 st.markdown("<h2 style='text-align: center;'>CASES ACROSS INDIA</h2>",
@@ -77,12 +80,59 @@ with second_chart:
 st.markdown("---")
 
 # kpi3
-st.write(df1.head())
+
+st.markdown("<h2 style='text-align: center;'>Visualizing top 5 States</h2>",
+            unsafe_allow_html=True)
+
+df2 = df[1:].sort_values('Confirmed', ascending=False)
+
+fig = go.Figure(data=[
+    go.Bar(name='Confirmed',
+                x=df2['State'][:5], y=df2['Confirmed'][:5]),
+    go.Bar(name='Deaths',
+                x=df2['State'][:5], y=df2['Deaths'][:5]),
+    go.Bar(name='Recovered',
+                x=df2['State'][:5], y=df2['Recovered'][:5]), ])
+st.plotly_chart(fig, use_container_width=True)
+
+
+first_chart, second_chart = st.beta_columns(2)
+
+with first_chart:
+    st.markdown("<h3 style='text-align: center;'>Total Confirmed Cases</h3>",
+                unsafe_allow_html=True)
+    fig = px.pie(df2, values=df2["Confirmed"][:5],
+                 names=df2['State'][:5])
+    st.plotly_chart(fig)
+
+with second_chart:
+    st.markdown("<h3 style='text-align: center;'>Total Recovered Cases</h3>",
+                unsafe_allow_html=True)
+    fig = px.pie(df2, values=df2["Recovered"][:5],
+                 names=df2['State'][:5])
+    st.plotly_chart(fig)
+
+
+first_chart, second_chart = st.beta_columns(2)
+
+with first_chart:
+    st.markdown("<h3 style='text-align: center;'>Total Active Cases</h3>",
+                unsafe_allow_html=True)
+    fig = px.pie(df2, values=df2["Active"][:5],
+                 names=df2['State'][:5])
+    st.plotly_chart(fig)
+
+with second_chart:
+    st.markdown("<h3 style='text-align: center;'>Total Deceased Cases</h3>",
+                unsafe_allow_html=True)
+    fig = px.pie(df2, values=df2["Deaths"][:5],
+                 names=df2['State'][:5])
+    st.plotly_chart(fig)
 
 # Scattermap
 
 fig = px.scatter_mapbox(df, lat="lat", lon="lon", hover_name="State", hover_data=["Confirmed", "Recovered", "Deaths", "Active"],
-                        color_discrete_sequence=["darkblue"], zoom=3.3, height=500)
+                        color_discrete_sequence=["darkblue"], zoom=4, height=700)
 
 fig.update_layout(mapbox_style="open-street-map")
 fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
