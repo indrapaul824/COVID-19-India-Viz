@@ -40,11 +40,10 @@ As we all know our country is still facing SARS-CoV-2 (n-coronavirus),the scenes
 
 ## Usage
 
-
-## Features
-
-
-## Reference
+To run the app locally, navigate to the project directory and run the following command:
+```bash
+streamlit run dashboard.py
+```
 
 
 ## Contributors
