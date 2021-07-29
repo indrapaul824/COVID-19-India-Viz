@@ -1,8 +1,6 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-from plotly.subplots import make_subplots
-import plotly.graph_objects as go
 
 df = pd.read_csv("state_wise.csv")
 df['Date'] = df['Last_Updated_Time'].astype('datetime64[ns]')
