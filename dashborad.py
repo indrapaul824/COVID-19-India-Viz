@@ -25,7 +25,7 @@ st.markdown("<h2 style='text-align: center;'>CASES ACROSS INDIA</h2>",
 con, rec, det, act = st.beta_columns(4)
 
 with con:
-    st.markdown("<h3 style='text-align: center;'>Total Confirmed Cases</h3>",
+    st.markdown("<h3 style='text-align: center;'>Confirmed Cases</h3>",
                 unsafe_allow_html=True)
     num1 = df['Confirmed'][0]
     st.markdown(
@@ -54,25 +54,34 @@ with act:
 
 st.markdown("---")
 
+# kpi2
+
 df1 = pd.read_csv(
     "https://api.covid19india.org/csv/latest/case_time_series.csv")
 
-st.markdown("## Total Cases")
+st.markdown("<h2 style='text-align: center;'>Visualizing Total and Daily Cases</h2>",
+            unsafe_allow_html=True)
 
 first_chart, second_chart = st.beta_columns(2)
 
 with first_chart:
     fig = px.line(df1, x="Date", y=["Total Confirmed",
-                                    "Total Recovered", "Total Deceased"], title="Total Confirmed, Recovered and Deceased")
+                                    "Total Deceased", "Total Recovered"], title="Total Confirmed, Recovered and Deceased")
     fig.update_layout(height=600)
     st.plotly_chart(fig, use_container_width=True)
 
 with second_chart:
     fig = px.line(df1, x="Date", y=["Daily Confirmed",
-                                    "Daily Recovered", "Daily Deceased"], title="Daily Confirmed, Recovered and Deceased")
+                                    "Daily Deceased", "Daily Recovered"], title="Daily Confirmed, Recovered and Deceased")
     fig.update_layout(height=600)
     st.plotly_chart(fig, use_container_width=True)
 
+st.markdown("---")
+
+# kpi3
+st.write(df1.head())
+
+# Scattermap
 
 fig = px.scatter_mapbox(df, lat="lat", lon="lon", hover_name="State", hover_data=["Confirmed", "Recovered", "Deaths", "Active"],
                         color_discrete_sequence=["darkblue"], zoom=3.3, height=500)
