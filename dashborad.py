@@ -6,7 +6,7 @@ import plotly.graph_objects as go
 df = pd.read_csv("state_wise.csv")
 df['Date'] = df['Last_Updated_Time'].astype('datetime64[ns]')
 
-st.set_page_config(page_title='Streamlit Dashboard',
+st.set_page_config(page_title='Covid19-India Dashboard',
                    layout='wide',
                    page_icon='💹')
 
