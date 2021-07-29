@@ -131,6 +131,8 @@ with second_chart:
                  names=df2['State'][:5])
     st.plotly_chart(fig)
 
+st.markdown("---")
+
 # Scattermap
 
 fig = px.scatter_mapbox(df, lat="lat", lon="lon", hover_name="State", hover_data=["Confirmed", "Recovered", "Deaths", "Active"],
