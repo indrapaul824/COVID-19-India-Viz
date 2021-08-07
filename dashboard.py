@@ -13,9 +13,11 @@ df['Date'] = df['Last_Updated_Time'].astype('datetime64[ns]')
 st.set_page_config(page_title='Streamlit Dashboard',
                    layout='wide',
                    page_icon='💹')
-st.write(df[df["Confirmed"] != 0])
+
 st.markdown("<h1 style='text-align: center; color: red;'>COVID19 DASHBOARD - INDIA</h1>",
             unsafe_allow_html=True)
+
+st.markdown("---")
 
 st.markdown("<p style='text-align: justify;'>As we all know our country is still facing SARS-CoV-2 (n-coronavirus),the scenes of suffering in our country are hard to comprehend. A second wave beginning in March 2021 was much larger than the first, with shortages of vaccines, hospital beds, oxygen cylinders and other medicines in parts of the country. By late April, India led the world in new and active cases. On 30 April 2021, it became the first country to report over 400,000 new cases in a 24-hour period. Health experts believe that India's figures have been underreported due to several factors.</p>", unsafe_allow_html=True)
 
@@ -145,5 +147,6 @@ fig = px.scatter_mapbox(df, lat="lat", lon="lon", hover_name="State", hover_data
 
 fig.update_layout(mapbox_style="open-street-map")
 fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
-st.markdown("## State-wise, detailed Scattermap")
+st.markdown("<h2 style='text-align: center;'>State-wise detailed Scattermap</h2>",
+            unsafe_allow_html=True)
 st.plotly_chart(fig, use_container_width=True)
