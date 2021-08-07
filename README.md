@@ -5,14 +5,18 @@
 
 
 ## Overview
-As we all know our country is still facing SARS-CoV-2 (n-coronavirus),the scenes of suffering in our country are hard to comprehend. A second wave beginning in March 2021 was much larger than the first, with shortages of vaccines, hospital beds, oxygen cylinders and other medicines in parts of the country. By late April, India led the world in new and active cases. On 30 April 2021, it became the first country to report over 400,000 new cases in a 24-hour period.Health experts believe that India's figures have been underreported due to several factors.
+As we all know our country is still facing SARS-CoV-2 (n-coronavirus),the scenes of suffering in our country are hard to comprehend. A second wave beginning in March 2021 was much larger than the first, with shortages of vaccines, hospital beds, oxygen cylinders and other medicines in parts of the country. By late April, India led the world in new and active cases. On 30 April 2021, it became the first country to report over 400,000 new cases in a 24-hour period. Health experts believe that India's figures have been underreported due to several factors.
 
 ### This dashboard is an effort to analyze the cumulative data of confirmed, deaths, recovered and active cases over time.
 
 
 
 ## Datasets used
-- https://api.covid19india.org/csv/latest/states.csv
+
+Source Website: [Covid19 India API](https://api.covid19india.org)
+
+The dataset apis we used:
+- https://api.covid19india.org/csv/latest/state_wise.csv
 - https://api.covid19india.org/csv/latest/case_time_series.csv
 
 ## Requirement
