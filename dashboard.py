@@ -4,12 +4,16 @@ import plotly.express as px
 import plotly.graph_objects as go
 
 df = pd.read_csv("https://api.covid19india.org/csv/latest/state_wise.csv")
+df.drop(["Migrated_Other", "State_code", "Delta_Confirmed",
+         "Delta_Recovered", "Delta_Deaths", "State_Notes"], axis=1, inplace=True)
+df = df[df["Confirmed"] != 0]
+
 df['Date'] = df['Last_Updated_Time'].astype('datetime64[ns]')
 
 st.set_page_config(page_title='Streamlit Dashboard',
                    layout='wide',
                    page_icon='💹')
-
+st.write(df[df["Confirmed"] != 0])
 st.markdown("<h1 style='text-align: center; color: red;'>COVID19 DASHBOARD - INDIA</h1>",
             unsafe_allow_html=True)
 
@@ -130,9 +134,13 @@ with second_chart:
     st.plotly_chart(fig)
 
 # Scattermap
-state_wise_lat = pd.read_csv("state_wise_lat.csv")
+lat_lon = pd.read_csv("lat_lon_india.csv")
+df.drop(0, axis=0, inplace=True)
+df.reset_index(drop=True, inplace=True)
+df["lat"] = lat_lon['latitude']
+df["lon"] = lat_lon['longitude']
 
-fig = px.scatter_mapbox(state_wise_lat, lat="lat", lon="lon", hover_name="State", hover_data=["Confirmed", "Recovered", "Deaths", "Active"],
+fig = px.scatter_mapbox(df, lat="lat", lon="lon", hover_name="State", hover_data=["Confirmed", "Recovered", "Deaths", "Active"],
                         color_discrete_sequence=["darkblue"], zoom=4, height=700)
 
 fig.update_layout(mapbox_style="open-street-map")
