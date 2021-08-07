@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
-df = pd.read_csv("state_wise.csv")
+df = pd.read_csv("https://api.covid19india.org/csv/latest/state_wise.csv")
 df['Date'] = df['Last_Updated_Time'].astype('datetime64[ns]')
 
 st.set_page_config(page_title='Streamlit Dashboard',
@@ -130,8 +130,9 @@ with second_chart:
     st.plotly_chart(fig)
 
 # Scattermap
+state_wise_lat = pd.read_csv("state_wise_lat.csv")
 
-fig = px.scatter_mapbox(df, lat="lat", lon="lon", hover_name="State", hover_data=["Confirmed", "Recovered", "Deaths", "Active"],
+fig = px.scatter_mapbox(state_wise_lat, lat="lat", lon="lon", hover_name="State", hover_data=["Confirmed", "Recovered", "Deaths", "Active"],
                         color_discrete_sequence=["darkblue"], zoom=4, height=700)
 
 fig.update_layout(mapbox_style="open-street-map")

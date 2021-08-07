@@ -22,18 +22,17 @@ As we all know our country is still facing SARS-CoV-2 (n-coronavirus),the scenes
 	-  Dependencies from requirements.txt
 * Directions to Install
 
-   - First clone this repository onto your system.<br>
+   - Clone this repository<br>
    ```bash
    git clone https://github.com/IndraP24/COVID-19-India-Viz.git
    ```
-   - Then, create a Virtual Environment and install the packages from requirements.txt: <br>
    - Navigate to this repository, create a Virtual Environment and activate it: <br>
    ```bash
   cd path/to/cloned/repo
   python3 -m venv env
   source env/bin/activate
   ```
-  Install the python dependencies from requirements.txt:
+   - Install the python dependencies from the **requirements.txt** file:
     ```bash
     pip install -r requirements.txt
      ```
